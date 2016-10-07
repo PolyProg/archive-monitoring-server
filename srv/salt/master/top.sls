@@ -1,7 +1,7 @@
 master:
   "roles:master:True":
     - match: pillar
-    - root
+    - squid
     - salt
     - network
     - monitor

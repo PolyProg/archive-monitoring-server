@@ -120,7 +120,7 @@ install nagios plugins:
 register rsync plugin:
   file.append:
     - name: /etc/icinga2/conf.d/commands.conf
-    - source: salt://appends/etc/icinga2/conf.d/commands.conf
+    - source: salt://files/misc/icinga2/conf.d/commands.conf
     
     - require:
       - pkg: install icinga2
@@ -131,7 +131,7 @@ register rsync plugin:
  
 {{ salt['user.info']("icinga").home }}/.ssh/:
   file.recurse:
-    - source: salt://files/misc/icinga2_ssh
+    - source: salt://files/misc/icinga2/ssh
     - file_mode: 400
     - dir_mode: 2770
     - user: icinga
