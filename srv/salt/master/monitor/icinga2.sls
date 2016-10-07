@@ -129,8 +129,10 @@ register rsync plugin:
       - service: install icinga2
 
  
-{{ salt['user.info']("icinga").home }}/.ssh/:
+{% if salt["user.info"]("icinga") %}
+salt ssh keys:
   file.recurse:
+    - name: {{ salt['user.info']("icinga").home }}/.ssh/
     - source: salt://files/misc/icinga2/ssh
     - file_mode: 400
     - dir_mode: 2770
@@ -138,5 +140,9 @@ register rsync plugin:
     - group: icinga
     - makedirs: True
     
+    - require:
+      - pkg: install icinga2
+    
     - require_in:
       - service: install icinga2
+{% endif %}

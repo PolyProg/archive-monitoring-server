@@ -26,3 +26,6 @@ dnf proxy:
   file.append:
     - name: /etc/dnf/dnf.conf
     - text: proxy=http://localhost:3128
+    
+    - require:
+      - service: squid

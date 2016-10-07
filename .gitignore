@@ -1,0 +1,7 @@
+/*
+!srv/
+srv/*
+!srv/salt/
+
+id_rsa*
+passwords.sls

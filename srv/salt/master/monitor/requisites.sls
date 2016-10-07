@@ -12,7 +12,7 @@ enable postgresql:
     - name: postgresql-setup --initdb --unit postgresql
     - creates: /var/lib/pgsql/data/postgresql.conf
 
-    - require:
+    - require_in:
       - service: enable postgresql
       
 
@@ -22,7 +22,7 @@ disable ident authentication:
     - regex: ^host.*ident$
     
     - require:
-      - pkg: enable postgresql
+      - cmd: enable postgresql
      
     - watch_in:
       - service: enable postgresql
