@@ -1,0 +1,6 @@
+id: polyprog-monitor
+
+master: localhost
+
+verify_env: True
+hash_type: sha256

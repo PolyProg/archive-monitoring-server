@@ -1,0 +1,20 @@
+verify_env: True
+
+auto_accept: True
+
+file_roots:
+  master:
+    - /srv/salt/master
+
+
+pillar_roots:
+  base:
+    - /srv/salt/pillars
+
+
+# this is needed but I don't see why
+config_dir: /etc/salt
+
+
+hash_type: sha256
+gather_job_timeout: 60

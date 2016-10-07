@@ -1,0 +1,4 @@
+Host plg-*
+    User too
+    StrictHostKeyChecking no
+    UserKnownHostsFile=/dev/null
