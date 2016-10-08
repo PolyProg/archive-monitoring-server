@@ -4,3 +4,6 @@ master: localhost
 
 verify_env: True
 hash_type: sha256
+
+mine_functions:
+  network.get_hostname: []

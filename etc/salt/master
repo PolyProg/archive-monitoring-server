@@ -3,8 +3,14 @@ verify_env: True
 auto_accept: True
 
 file_roots:
+  base:
+    - /srv/salt/commands
+
   master:
     - /srv/salt/master
+
+  minion:
+    - /srv/salt/minion
 
 
 pillar_roots:

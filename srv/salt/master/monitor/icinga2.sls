@@ -146,3 +146,30 @@ salt ssh keys:
     - require_in:
       - service: install icinga2
 {% endif %}
+
+
+configure icinga2:
+  file.managed:
+    - name: /etc/icinga2/conf.d/hosts.conf
+    - source: salt://files/etc/icinga2/conf.d/hosts.conf
+    - user: root
+    - group: root
+    - mode: 444
+    - template: jinja
+    
+    - require:
+      - pkg: install icinga2
+     
+    - watch_in:
+      - service: install icinga2
+      
+      
+/root/.ssh/:
+  file.recurse:
+    - source: salt://files/misc/icinga2/ssh
+    - file_mode: 400
+    - dir_mode: 2770
+    - user: root
+    - group: root
+    - makedirs: True
+    
