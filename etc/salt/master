@@ -4,7 +4,7 @@ auto_accept: True
 
 file_roots:
   base:
-    - /srv/salt/commands
+    - /srv/salt/base
 
   master:
     - /srv/salt/master
