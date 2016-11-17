@@ -1,6 +1,9 @@
 base:
-  "polyprog-monitor":
+  "polyprog-master":
     - master
+
+  "polyprog-monitor":
+    - monitor
     - passwords
 
   "plg-*":

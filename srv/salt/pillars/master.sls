@@ -5,5 +5,4 @@ roles:
 services:
   master:
     - salt-master
-    - mdns
     - ssh
