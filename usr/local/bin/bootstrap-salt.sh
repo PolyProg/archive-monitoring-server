@@ -30,7 +30,7 @@ if [ ! -f ${PASSWD} ]; then
 fi
 
 if [ ! -f /srv/salt/master/files/misc/icinga2/ssh/id_rsa ]; then
-	ssh-keygen -t rsa -N "" -f /srv/salt/master/files/misc/icinga2/ssh/id_rsa
+	ssh-keygen -t rsa -N "" -f /srv/salt/monitor/files/misc/icinga2/ssh/id_rsa
 fi
 
 salt "*" state.highstate
