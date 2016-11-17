@@ -7,8 +7,9 @@ if [[ $EUID -ne 0 ]]; then
     exit 1
 fi
 
-dnf install -y salt-master salt-minion
-
+curl -L https://bootstrap.saltstack.com -o /tmp/salt.sh
+sh /tmp/salt.sh -P -M
+rm /tmp/salt.sh
 
 systemctl start salt-master
 systemctl start salt-minion
@@ -18,7 +19,7 @@ readonly PASSWD=/srv/salt/pillars/passwords.sls
 if [ ! -f ${PASSWD} ]; then
 	echo "Please enter icinga web password"
 	read password
-	
+
 	ICINGA2_DB=`openssl rand -base64 32`
 	ICINGAWEB2_DB=`openssl rand -base64 32`
 
