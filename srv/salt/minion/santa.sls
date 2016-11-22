@@ -51,7 +51,7 @@ block connections for {{ port }}:
 {% endfor %}
 
 
-/usr/share/background/santa.png:
+/usr/share/backgrounds/santa.png:
   file.managed:
     - source: salt://files/santa.png
     - user: root
