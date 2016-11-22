@@ -1,2 +1,2 @@
 roles:
-  master: True
+  minion: True
