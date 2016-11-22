@@ -26,9 +26,34 @@ allow hc2 for {{ port }}:
 
 
 {% for port in ["http", "https"] %}
+{% for addr in [
+  "mc.yandex.ru", "social.yandex.ru", "img.fotki.yandex.ru", "export.yandex.ru", "contest.yandex.ru",
+  "contest2.yandex.ru", "front.contest.yandex.net", "static.yandex.net", "passport.yandex.com", "passport.yandex.ru",
+  "pass.yandex.ru", "awaps.yandex.ru", "clck.yandex.ru"
+] %}
+allow {{ addr }} for {{ port }}:
+  iptables.append:
+    - chain: OUTPUT
+    - protocol: tcp
+    - dport: {{ port }}
+    - destination: {{ addr }}
+    - jump: ACCEPT
+{% endfor %}
+{% endfor %}
+
+{% for port in ["http", "https"] %}
 block connections for {{ port }}:
   iptables.append:
     - chain: OUTPUT
     - protocol: tcp
     - dport: {{ port }}
     - jump: DROP
+{% endfor %}
+
+
+/usr/share/background/santa.png:
+  file.managed:
+    - source: salt://files/santa.png
+    - user: root
+    - group: root
+    - mode: 644
