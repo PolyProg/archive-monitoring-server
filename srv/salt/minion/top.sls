@@ -1,5 +1,5 @@
 minion:
   "roles:minion:True":
     - match: pillar
-    - firewall
+    - yandex_firewall
     - monitoring

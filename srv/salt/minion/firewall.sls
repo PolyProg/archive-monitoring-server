@@ -9,7 +9,7 @@ restrict {{ table }} on {{ family }}:
   iptables.set_policy:
     - chain: {{ table }}
     - policy: DROP
-    - family: {{ family }}  
+    - family: {{ family }}
   {% endfor %}
 {% endfor %}
 
@@ -36,7 +36,7 @@ allow loopback on OUTPUT:
     - chain: OUTPUT
     - jump: ACCEPT
     - out-interface: lo
-    
+
     - require:
       - pkg: firewall
 
@@ -49,33 +49,23 @@ allow dns:
     - jump: ACCEPT
 
 
-{% for chain in ["INPUT", "OUTPUT"] %}
-allow mdns on {{ chain }}:
-  iptables.append:
-    - chain: {{ chain }}
-    - proto: udp
-    - dport: mdns
-    - jump: ACCEPT
-{% endfor%}
-
-
 allow incoming ssh:
   iptables.append:
     - chain: INPUT
     - proto: tcp
     - dport: ssh
     - jump: ACCEPT
-    
-    
+
+
 allow ping:
   iptables.append:
     - chain: INPUT
     - protocol: icmp
     - icmp-type: echo-request
     - jump: ACCEPT
-    
 
-{% for port in ["http", "https"] %}    
+
+{% for port in ["http", "https"] %}
 allow hc2 for {{ port }}:
   iptables.append:
     - chain: OUTPUT
