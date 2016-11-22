@@ -8,3 +8,6 @@ base:
 
   "plg-*":
     - minion
+
+  "ubuntu":
+    - minion
