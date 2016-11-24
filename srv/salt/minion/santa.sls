@@ -1,5 +1,7 @@
 include:
   - .monitoring
+  - .defaults
+
 
 firewall:
   pkg.installed:
