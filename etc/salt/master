@@ -1,5 +1,7 @@
 verify_env: True
 
+pub_refresh: True
+
 auto_accept: True
 
 file_roots:

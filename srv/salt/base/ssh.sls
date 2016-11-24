@@ -3,3 +3,4 @@ sshkeys:
     - user: root
     - source: salt://authorized_keys
     - config: "%h/.ssh/authorized_keys"
+

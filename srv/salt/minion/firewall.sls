@@ -1,3 +1,6 @@
+include:
+  - .monitoring
+
 firewall:
   pkg.installed:
     - name: iptables
@@ -8,7 +11,7 @@ firewall:
 restrict {{ table }} on {{ family }}:
   iptables.set_policy:
     - chain: {{ table }}
-    - policy: DROP
+    - policy: ACCEPT
     - family: {{ family }}
   {% endfor %}
 {% endfor %}

@@ -1,3 +1,6 @@
+include:
+  - .monitoring
+
 firewall:
   pkg.installed:
     - name: iptables
@@ -51,7 +54,7 @@ block connections for {{ port }}:
 {% endfor %}
 
 
-/usr/share/backgrounds/santa.png:
+/usr/share/backgrounds/warty-final-ubuntu.png:
   file.managed:
     - source: salt://files/santa.png
     - user: root

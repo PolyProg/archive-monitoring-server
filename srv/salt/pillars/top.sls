@@ -11,3 +11,9 @@ base:
 
   "ubuntu":
     - minion
+
+  "IC-POLY*":
+    - minion
+
+  "noname":
+    - minion
