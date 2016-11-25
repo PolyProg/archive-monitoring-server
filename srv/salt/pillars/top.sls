@@ -17,3 +17,6 @@ base:
 
   "noname":
     - minion
+
+  "icin*":
+    - minion
