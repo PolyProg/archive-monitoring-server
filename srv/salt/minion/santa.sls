@@ -18,20 +18,9 @@ restrict {{ table }} on {{ family }}:
   {% endfor %}
 {% endfor %}
 
-
-{% for port in ["http", "https"] %}
-allow hc2 for {{ port }}:
-  iptables.append:
-    - chain: OUTPUT
-    - protocol: tcp
-    - dport: {{ port }}
-    - destination: hc2.ch
-    - jump: ACCEPT
-{% endfor %}
-
-
 {% for port in ["http", "https"] %}
 {% for addr in [
+  "hc2.ch", "polyprog.epfl.ch",
   "mc.yandex.ru", "social.yandex.ru", "img.fotki.yandex.ru", "export.yandex.ru", "contest.yandex.ru",
   "contest2.yandex.ru", "front.contest.yandex.net", "static.yandex.net", "passport.yandex.com", "passport.yandex.ru",
   "pass.yandex.ru", "awaps.yandex.ru", "clck.yandex.ru"
