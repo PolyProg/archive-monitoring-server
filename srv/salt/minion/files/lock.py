@@ -21,8 +21,7 @@ def change_context(user):
             os.setuid(pwnam.pw_uid)
             os.setgid(pwnam.pw_gid)
         except Exception as e:
-            with open("/tmp/error") as f:
-                f.write(e)
+            print(e)
 
     return context
 
