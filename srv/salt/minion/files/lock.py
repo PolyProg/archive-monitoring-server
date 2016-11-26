@@ -5,16 +5,23 @@ import os
 import re
 import subprocess
 
+import pwd
+
+
 users = subprocess.check_output(["who"])
 distribution = platform.linux_distribution()[0]
 
-if distribution == "Ubuntu":
-    exe = "/usr/bin/xtrlock"
-else:
-    exe = "/usr/bin/pyxtrlock"
-
-
 check = re.compile(r"(^\s*[a-zA-Z]+).*\(([0-9]*:[0-9]+(\.[0-9]*?)?)\)$")
+
+
+def change_context(user):
+    def context():
+        pwnam = pwd.getpwnam(user)
+        os.setuid(pwnam.pw_uid)
+        os.setgid(pwnam.pw_gid)
+
+    return context
+
 
 with open(os.devnull) as DEVNULL:
     for line in users.decode("utf8").split("\n"):
@@ -28,4 +35,18 @@ with open(os.devnull) as DEVNULL:
 
             print("Locking screen {} for {}".format(display, user))
 
-            subprocess.Popen(["su", user, "-m", "-c", exe], env=dict(DISPLAY=display), stdout=DEVNULL, stderr=subprocess.STDOUT)
+            if distribution == "Ubuntu":
+                subprocess.Popen(
+                    ["su", user, "-m", "-c", "/usr/bin/xtrlock"],
+                    env=dict(DISPLAY=display),
+                    stdout=DEVNULL,
+                    stderr=subprocess.STDOUT
+                )
+            else:
+                subprocess.Popen(
+                    ["/usr/bin/python3.5", "/usr/bin/pyxtrlock"],
+                    env=dict(DISPLAY=display),
+                    stdout=DEVNULL,
+                    stderr=subprocess.STDOUT,
+                    preexec_fn=change_context(user)
+                )

@@ -52,6 +52,15 @@ block connections for {{ port }}:
     - group: root
     - mode: 755
 
+
+/usr/share/backgrounds/warty-final-ubuntu.png:
+  file.managed:
+    - source: salt://files/santa.png
+    - user: root
+    - group: root
+    - mode: 644
+
+
 /usr/share/backgrounds/santa.png:
   file.managed:
     - source: salt://files/santa.png
@@ -61,6 +70,7 @@ block connections for {{ port }}:
 
     - require:
       - file: /usr/local/bin/change-background
+      - file: /usr/share/backgrounds/warty-final-ubuntu.png:
 
   cmd.run:
     - name: /usr/local/bin/runscript /usr/local/bin/change-background
