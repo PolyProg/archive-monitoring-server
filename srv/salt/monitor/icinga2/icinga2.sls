@@ -5,8 +5,8 @@ include:
 configure icinga2 repository:
   pkg.installed:
     - sources:
-      - icinga-rpm-release: https://packages.icinga.org/fedora/24/release/noarch/icinga-rpm-release-24-1.fc24.noarch.rpm
-      
+      - icinga-rpm-release: https://packages.icinga.org/fedora/25/release/noarch/icinga-rpm-release-25-1.fc25.noarch.rpm
+
     - require:
       - service: enable postgresql
       - service: enable httpd
@@ -16,7 +16,7 @@ install icinga2:
   pkg.installed:
     - pkgs:
       - icinga2
-      - icingacli 
+      - icingacli
       - icinga2-ido-pgsql
 
     - require:
@@ -25,7 +25,7 @@ install icinga2:
   service.running:
     - name: icinga2
     - enable: True
-    
+
     - require:
       - pkg: install icinga2
 
@@ -35,10 +35,10 @@ configure icinga2 pgsql:
     - name: icinga2 feature enable ido-pgsql
     - creates: /etc/icinga2/features-enabled/ido-pgsql.conf
     - watch_in: icinga2 service
-    
+
     - require:
       - pkg: install icinga2
-      
+
   file.recurse:
     - name: /etc/icinga2
     - source: salt://files/etc/icinga2
@@ -47,7 +47,7 @@ configure icinga2 pgsql:
     - dir_mode: 2775
     - file_mode: 0644
     - template: jinja
-    
+
     - watch_in: icinga2 service
 
 
@@ -56,7 +56,7 @@ configure icinga2 command:
     - name: icinga2 feature enable command
     - creates: /etc/icinga2/features-enabled/command.conf
     - watch_in: icinga2 service
-    
+
     - require:
       - pkg: install icinga2
 
@@ -84,7 +84,7 @@ setup icinga2 database:
     - name: psql -U icinga -d icinga -h 127.0.0.1 < /usr/share/icinga2-ido-pgsql/schema/pgsql.sql
     - env:
       - PGPASSWORD: {{ pillar["icinga2_db_password"] }}
-    - onchanges: 
+    - onchanges:
       - postgres_database: setup icinga2 database
 
 
@@ -97,12 +97,12 @@ install nagios plugins:
       - nagios-plugins-load
       - nagios-plugins-ping
       - perl-Nagios-Plugin
-      
+
     - require:
       - pkg: install icinga2
 
     - watch_in: icinga2 service
-      
+
   file.recurse:
     - name: /usr/lib64/nagios
     - source: salt://files/usr/lib64/nagios
@@ -110,10 +110,10 @@ install nagios plugins:
     - group: root
     - dir_mode: 2775
     - file_mode: 0755
-    
+
     - require:
       - pkg: install icinga2
-      
+
     - watch_in: icinga2 service
 
 
@@ -121,14 +121,14 @@ register rsync plugin:
   file.append:
     - name: /etc/icinga2/conf.d/commands.conf
     - source: salt://files/misc/icinga2/conf.d/commands.conf
-    
+
     - require:
       - pkg: install icinga2
-      
+
     - require_in:
       - service: install icinga2
 
- 
+
 {% if salt["user.info"]("icinga") %}
 salt ssh keys:
   file.recurse:
@@ -139,10 +139,10 @@ salt ssh keys:
     - user: icinga
     - group: icinga
     - makedirs: True
-    
+
     - require:
       - pkg: install icinga2
-    
+
     - require_in:
       - service: install icinga2
 {% endif %}
@@ -156,14 +156,14 @@ configure icinga2:
     - group: root
     - mode: 444
     - template: jinja
-    
+
     - require:
       - pkg: install icinga2
-     
+
     - watch_in:
       - service: install icinga2
-      
-      
+
+
 /root/.ssh/:
   file.recurse:
     - source: salt://files/misc/icinga2/ssh
@@ -172,4 +172,4 @@ configure icinga2:
     - user: root
     - group: root
     - makedirs: True
-    
+
