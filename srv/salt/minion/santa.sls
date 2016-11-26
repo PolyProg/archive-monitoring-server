@@ -45,12 +45,22 @@ block connections for {{ port }}:
 {% endfor %}
 
 
+/usr/local/bin/change-background:
+  file.managed:
+    - source: salt://files/change-background.sh
+    - user: root
+    - group: root
+    - mode: 755
+
 /usr/share/backgrounds/santa.png:
   file.managed:
     - source: salt://files/santa.png
     - user: root
     - group: root
     - mode: 644
+
+    - require:
+      - file: /usr/local/bin/change-background
 
   cmd.run:
     - name: /usr/local/bin/runscript /usr/local/bin/change-background.sh
