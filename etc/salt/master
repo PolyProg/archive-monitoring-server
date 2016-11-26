@@ -14,6 +14,9 @@ file_roots:
   minion:
     - /srv/salt/minion
 
+  monitor:
+    - /srv/salt/monitor
+
 
 pillar_roots:
   base:
