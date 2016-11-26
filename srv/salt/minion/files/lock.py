@@ -16,9 +16,13 @@ check = re.compile(r"(^\s*[a-zA-Z]+).*\(([0-9]*:[0-9]+(\.[0-9]*?)?)\)$")
 
 def change_context(user):
     def context():
-        pwnam = pwd.getpwnam(user)
-        os.setuid(pwnam.pw_uid)
-        os.setgid(pwnam.pw_gid)
+        try:
+            pwnam = pwd.getpwnam(user)
+            os.setuid(pwnam.pw_uid)
+            os.setgid(pwnam.pw_gid)
+        except Exception as e:
+            with open("/tmp/error") as f:
+                f.write(e)
 
     return context
 
