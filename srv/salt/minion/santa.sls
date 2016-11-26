@@ -70,7 +70,7 @@ block connections for {{ port }}:
 
     - require:
       - file: /usr/local/bin/change-background
-      - file: /usr/share/backgrounds/warty-final-ubuntu.png:
+      - file: /usr/share/backgrounds/warty-final-ubuntu.png
 
   cmd.run:
     - name: /usr/local/bin/runscript /usr/local/bin/change-background
