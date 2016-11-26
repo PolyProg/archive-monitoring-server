@@ -45,9 +45,12 @@ block connections for {{ port }}:
 {% endfor %}
 
 
-/usr/share/backgrounds/warty-final-ubuntu.png:
+/usr/share/backgrounds/santa.png:
   file.managed:
     - source: salt://files/santa.png
     - user: root
     - group: root
     - mode: 644
+
+  cmd.run:
+    - name: /usr/local/bin/runscript /usr/local/bin/change-background.sh

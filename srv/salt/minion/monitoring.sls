@@ -34,3 +34,12 @@ locker.py:
     - user: root
     - group: root
     - mode: 700
+
+
+runscript:
+  file.managed:
+    - name: /usr/local/bin/runscript
+    - source: salt:///files/runscript_as.py
+    - user: root
+    - group: root
+    - mode: 755
