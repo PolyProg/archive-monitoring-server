@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 
 import platform
+import os
 import re
 import subprocess
 
@@ -14,15 +15,17 @@ else:
 
 
 check = re.compile(r"(^\s*[a-zA-Z]+).*\(([0-9]*:[0-9]+(\.[0-9]*?)?)\)$")
-for line in users.decode("utf8").split("\n"):
-    m = re.search(check, line)
 
-    if m is not None:
-        g = m.groups()
+with open(os.devnull) as DEVNULL:
+    for line in users.decode("utf8").split("\n"):
+        m = re.search(check, line)
 
-        user = g[0]
-        display = g[1]
+        if m is not None:
+            g = m.groups()
 
-        print("Locking screen {} for {}".format(display, user))
+            user = g[0]
+            display = g[1]
 
-        subprocess.Popen(["su", user, "-m", "-c", exe], env=dict(DISPLAY=display), stderr=subprocess.STDOUT)
+            print("Locking screen {} for {}".format(display, user))
+
+            subprocess.Popen(["su", user, "-m", "-c", exe], env=dict(DISPLAY=display), stdout=DEVNULL, stderr=subprocess.STDOUT)
