@@ -5,7 +5,7 @@ include:
 configure icinga2 repository:
   pkg.installed:
     - sources:
-      - icinga-rpm-release: https://packages.icinga.org/fedora/25/release/noarch/icinga-rpm-release-25-1.fc25.noarch.rpm
+      - icinga-rpm-release: https://packages.icinga.org/fedora/24/release/noarch/icinga-rpm-release-24-1.fc24.noarch.rpm
 
     - require:
       - service: enable postgresql
