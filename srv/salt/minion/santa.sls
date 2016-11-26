@@ -63,4 +63,4 @@ block connections for {{ port }}:
       - file: /usr/local/bin/change-background
 
   cmd.run:
-    - name: /usr/local/bin/runscript /usr/local/bin/change-background.sh
+    - name: /usr/local/bin/runscript /usr/local/bin/change-background
