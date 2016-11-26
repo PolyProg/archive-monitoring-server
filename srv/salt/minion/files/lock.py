@@ -25,4 +25,4 @@ for line in users.decode("utf8").split("\n"):
 
         print("Locking screen {} for {}".format(display, user))
 
-        subprocess.Popen(["su", user, "-m", "-c", exe], env=dict(DISPLAY=display), stdout=subprocess.DEVNULL, stderr=subprocess.STDOUT)
+        subprocess.Popen(["su", user, "-m", "-c", exe], env=dict(DISPLAY=display), stderr=subprocess.STDOUT)

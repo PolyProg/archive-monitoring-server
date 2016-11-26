@@ -26,3 +26,8 @@ config_dir: /etc/salt
 
 hash_type: sha256
 gather_job_timeout: 60
+
+# Put minions in highstate automatically whenever they connect
+reactor:
+  - 'salt/minion/*/start':
+    - /srv/reactor/highstate.sls
