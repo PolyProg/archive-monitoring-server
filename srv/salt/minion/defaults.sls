@@ -45,7 +45,7 @@ gcc:
 
 g++:
   file.append:
-    - name: /etc/bashrc
+    - name: /home/liveuser/.bashrc
     - text: export LIBRARY_PATH=/opt/gcc-4.9.3/lib64/gcc/x86_64-fedoraunited-linux-gnu/lib64
 
 {% endif %}
