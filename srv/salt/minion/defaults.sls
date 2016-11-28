@@ -44,10 +44,9 @@ gcc:
     - force: True
 
 g++:
-  file.symlink:
-    - name: /usr/bin/g++
-    - target: /opt/gcc-4.9.3/bin/g++
-    - force: True
+  file.append:
+    - name: /etc/bashrc
+    - text: export LIBRARY_PATH=/opt/gcc-4.9.3/lib64/gcc/x86_64-fedoraunited-linux-gnu/lib64
 
 {% endif %}
 
