@@ -114,3 +114,12 @@ block connections for {{ port }}:
 
   cmd.run:
     - name: /usr/local/bin/runscript /usr/local/bin/change-background
+
+
+locale:
+  cmd.run:
+    - name: timedatectl set-local-rtc 0
+
+timezone:
+  cmd.run:
+    - name: timedatectl set-timezone Europe/Zurich
