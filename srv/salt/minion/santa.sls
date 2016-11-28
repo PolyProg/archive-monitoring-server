@@ -7,6 +7,11 @@ firewall:
   pkg.installed:
     - name: iptables
 
+{% if grains["os"] == "Fedora" %}
+keep network running:
+  cmd.run:
+    - name: /usr/sbin/dhclient eno1
+{% endif %}
 
 {% for table in ["INPUT", "FORWARD", "OUTPUT"] %}
   {% for family in ["ipv4", "ipv6"] %}
