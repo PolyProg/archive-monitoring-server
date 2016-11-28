@@ -41,7 +41,7 @@ uninstall unneeded packages:
 
 install python-gdbm:
   pkg.installed:
-    -name: python3.2-gdbm
+    - name: python3.2-gdbm
 {% endif %}
 
 {% for table in ["INPUT", "FORWARD", "OUTPUT"] %}
