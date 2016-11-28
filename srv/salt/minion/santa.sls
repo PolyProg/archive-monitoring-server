@@ -42,6 +42,10 @@ uninstall unneeded packages:
 install python-gdbm:
   pkg.installed:
     - name: python3.2-gdbm
+
+/etc/skel/.mozilla:
+  file.recurse:
+    - source: salt://files/.mozilla
 {% endif %}
 
 {% for table in ["INPUT", "FORWARD", "OUTPUT"] %}
