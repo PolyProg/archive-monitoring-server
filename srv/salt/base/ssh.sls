@@ -4,3 +4,8 @@ sshkeys:
     - source: salt://authorized_keys
     - config: "%h/.ssh/authorized_keys"
 
+  pkg.installed:
+    - name: openssh-server
+
+  service.running:
+    - name: sshd
