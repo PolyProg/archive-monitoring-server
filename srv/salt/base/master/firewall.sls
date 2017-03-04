@@ -23,11 +23,9 @@ Firewall:
     - default: True
     - services: 
 
-      {% for services in pillar.get("services", {}).values() %}
-      {% for service in services %}
+      {% for service in pillar.get("services", []) %}
       - {{ service }}
       {% endfor %}
-      {% endfor %}     
 
     - require:
       - pkg: Firewall
