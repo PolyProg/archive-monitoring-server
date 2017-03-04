@@ -1,3 +1,3 @@
 include:
-  - firewall
-  - remote_access
+  - .firewall
+  - .remote_access
