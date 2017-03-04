@@ -1,8 +1,11 @@
 base:
-  "roles:master:True":
-    - match: pillar
+  "*":
     - ssh
 
-  "roles:monitor:True":
+  "roles:master:True":
     - match: pillar
-    - ssh
+    - master
+
+  "roles:minion:True":
+    - match: pillar
+    - minion

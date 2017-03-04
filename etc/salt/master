@@ -2,21 +2,11 @@ verify_env: True
 
 pub_refresh: True
 
-auto_accept: True
+auto_accept: False
 
 file_roots:
   base:
     - /srv/salt/base
-
-  master:
-    - /srv/salt/master
-
-  minion:
-    - /srv/salt/minion
-
-  monitor:
-    - /srv/salt/monitor
-
 
 pillar_roots:
   base:

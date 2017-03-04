@@ -1,2 +1,0 @@
-roles:
-  monitor: True

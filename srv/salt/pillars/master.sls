@@ -3,6 +3,5 @@ roles:
 
 
 services:
-  master:
-    - salt-master
-    - ssh
+  - salt-master
+  - ssh
