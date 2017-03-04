@@ -3,17 +3,6 @@ firewall:
     - name: iptables
 
 
-{% for table in ["INPUT", "FORWARD", "OUTPUT"] %}
-  {% for family in ["ipv4", "ipv6"] %}
-restrict {{ table }} on {{ family }}:
-  iptables.set_policy:
-    - chain: {{ table }}
-    - policy: DROP
-    - family: {{ family }}
-  {% endfor %}
-{% endfor %}
-
-
 {% for chain in ["INPUT", "OUTPUT"] %}
 allow established traffic for {{ chain }}:
   iptables.append:
@@ -84,4 +73,15 @@ allow to monitor on {{ port }}:
     - dport: {{ port }}
     - jump: ACCEPT
     - destination: master.hc2.ch
+{% endfor %}
+
+
+{% for table in ["INPUT", "FORWARD", "OUTPUT"] %}
+  {% for family in ["ipv4", "ipv6"] %}
+restrict {{ table }} on {{ family }}:
+  iptables.set_policy:
+    - chain: {{ table }}
+    - policy: DROP
+    - family: {{ family }}
+  {% endfor %}
 {% endfor %}
