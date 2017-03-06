@@ -1,8 +1,3 @@
-root:
-  user.present:
-    - password: {{ salt['shadow.gen_password'](salt['pillar.get']('password')) }}
-
-
 xtrlock:
   pkg.installed:
     - name: xtrlock
