@@ -13,7 +13,7 @@ allow policy for {{ family }} on {{ table }}:
 {% endfor %}
 
 {% for protocol in ["http", "https"] %}
-{% for sites in pillar["allowed_sites"] %}
+{% for site in pillar["allowed_sites"] %}
 allow {{ site }} for {{ protocol }} for {{ family }}:
   iptables.append:
     - chain: OUTPUT
