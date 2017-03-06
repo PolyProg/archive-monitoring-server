@@ -8,18 +8,20 @@ firewall:
 allow policy for {{ family }} on {{ table }}:
   iptables.set_policy:
     - chain: {{ table }}
-    - policy: ACCEP
+    - policy: ACCEPT
     - family: {{ family }}
 {% endfor %}
 
 {% for protocol in ["http", "https"] %}
-allow hc2 for {{ protocol }} for {{ family }}:
+{% for sites in pillar["allowed_sites"] %}
+allow {{ site }} for {{ protocol }} for {{ family }}:
   iptables.append:
     - chain: OUTPUT
     - protocol: tcp
     - dport: {{ protocol }}
-    - destination: hc2.ch
+    - destination: {{ site }}
     - jump: ACCEPT
+{% endfor %}
 
 restrict {{ protocol }} for {{ family }}:
   iptables.append:
