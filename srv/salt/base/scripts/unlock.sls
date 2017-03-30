@@ -1,3 +1,3 @@
 unlock:
   cmd.run:
-    - name: pkill xtrlock
+    - name: pkill slock

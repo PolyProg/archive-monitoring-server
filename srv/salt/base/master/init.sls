@@ -1,3 +1,4 @@
 include:
   - .firewall
   - .salt
+  - .ssh

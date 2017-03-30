@@ -1,6 +1,6 @@
-xtrlock:
+slock:
   pkg.installed:
-    - name: xtrlock
+    - name: slock
 
 
 locker.py:

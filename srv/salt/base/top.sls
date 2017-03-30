@@ -1,7 +1,4 @@
 base:
-  "*":
-    - ssh
-
   "roles:master:True":
     - match: pillar
     - master
