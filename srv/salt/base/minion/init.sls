@@ -1,2 +1,2 @@
 include:
-  - .remote_access
+  - .locking
