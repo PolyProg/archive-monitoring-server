@@ -18,7 +18,7 @@ for line in users.decode("utf8").split("\n"):
         print("Locking screen {} for {}".format(display, user))
 
         subprocess.Popen(
-            "su -c 'DISPLAY={} slock &' {}".format(display, user),
+            "su -c 'DISPLAY={} slock' {}".format(display, user),
             shell=True,
             stderr=subprocess.DEVNULL,
             stdout=subprocess.DEVNULL
